@@ -911,10 +911,10 @@
 
     // Slideshow
     const slideshowImages = [
-      { src:"https://placehold.co/300x300/ffcad4/333?text=Memory+1", alt:"Memory photo 1" },
-      { src:"https://placehold.co/300x300/ffc8dd/333?text=Memory+2", alt:"Memory photo 2" },
-      { src:"https://placehold.co/300x300/ffb3c1/333?text=Memory+3", alt:"Memory photo 3" },
-      { src:"https://placehold.co/300x300/ff9bbd/333?text=Memory+4", alt:"Memory photo 4" }
+      { src:"memory1.jpg", alt:"Memory photo 1" },
+      { src:"memory2.jpg", alt:"Memory photo 2" },
+      { src:"memory3.jpg", alt:"Memory photo 3" },
+      { src:"memory4.jpg", alt:"Memory photo 4" }
     ];
     let slideIndex = 0;
     const slideImg = document.getElementById("slideImg");
@@ -933,7 +933,8 @@
     const cutieImages = [
       { src: "cutie1.jpg", alt: "Cutie 1" },
       { src: "cutie2.jpg", alt: "Cutie 2" },
-      { src: "cutie3.jpg", alt: "Cutie 3" }
+      { src: "cutie3.jpg", alt: "Cutie 3" },
+      { src: "cutie4.jpg", alt: "Cutie 4" }
 ];
 
     let cutieIndex = 0;
@@ -974,7 +975,7 @@ showCutieSlide(0);
       heart.className = 'heart';
       heart.style.left = x + 'px';
       heart.style.top = y + 'px';
-      heart.textContent = '❤️';
+      heart.textContent = '💖';
       document.body.appendChild(heart);
       setTimeout(() => heart.remove(), 2000);
     }
