@@ -677,7 +677,7 @@
     <!-- Quiz button to open modal -->
     <div style="margin-top: 20px;">
       <button class="compliment-btn" style="background: #8760ff;" onclick="openQuiz()" aria-label="Open quiz">
-        Take Our Cute Quiz!
+        Take a Quiz!
       </button>
     </div>
   </div>
@@ -713,16 +713,16 @@
 
   <!-- Important Events -->
   <div class="section">
-    <h2>📆 Important Events</h2>
+    <h2>💫 Special dates</h2>
     <div class="timeline" aria-label="Timeline of events">
       <div class="timeline-item" tabindex="0">
-        <strong>26 February 2025</strong>: The day I proposed to you ❤️
+        <strong>19 December 2025</strong>: First message in dm 💖
       </div>
       <div class="timeline-item" tabindex="0">
-        <strong>14 January 2025</strong>: The day we first met 🌟
+        <strong>4 February 2025</strong>: Our first voice call ✨
       </div>
       <div class="timeline-item" tabindex="0">
-        <strong>1 August 2025</strong>: Our first month together 💕
+        <strong>26 February 2025</strong>: The day I proposed you 💕
       </div>
     </div>
   </div>
@@ -817,7 +817,7 @@
 
     // Love Reasons Slider
     const reasons = [
-      "You listen to me like no one else ever has 💗",
+      "You always support me 💗",
       "Your laughter makes even the dullest day beautiful 🌻",
       "You’re my biggest supporter and best friend 🤝",
       "Every moment with you feels like magic ✨",
@@ -865,7 +865,7 @@
         let secs = totalSec % 60;
         countdownEl.textContent = `Together for: ${days} day${days!==1?'s':''}, `
           + `${hrs.toString().padStart(2,'0')}:${mins.toString().padStart(2,'0')}:`
-          + `${secs.toString().padStart(2,'0')} 💑`;
+          + `${secs.toString().padStart(2,'0')} 🫶`;
       } else {
         countdownEl.textContent = `Counting starts soon... 💑`;
       }
@@ -889,7 +889,7 @@
         totalSec %= 3600;
         let mins = Math.floor(totalSec / 60);
         let secs = totalSec % 60;
-        annivCountdownEl.textContent = `Next Anniversary in: ${days} day${days!==1?'s':''}, `
+        annivCountdownEl.textContent = `First Anniversary in: ${days} day${days!==1?'s':''}, `
          + `${hrs.toString().padStart(2,'0')}:${mins.toString().padStart(2,'0')}:`
          + `${secs.toString().padStart(2,'0')}`;
       } else {
@@ -988,7 +988,7 @@ showCutieSlide(0);
         yesBtn.style.left = `${pos.x}px`;
         yesBtn.style.top = `${pos.y}px`;
       } else {
-        proposalMessage.textContent = "You made me the happiest! Forever and always ❤️💍";
+        proposalMessage.textContent = "Yayyyyyyyyyyy 👀 thank youuuuu <3 So together forever? ❤️💍";
         yesBtn.style.display = "none";
         noBtn.style.display = "none";
       }
