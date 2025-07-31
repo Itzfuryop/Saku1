@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Happy Girlfriend Day</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    /* Base styling */
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #ffe6f0, #ffe0ec);
+      color: #d63384;
+      transition: background 0.8s, color 0.8s;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    body.night {
+      background: radial-gradient(ellipse at top left, #393059 40%, #23243b 100%);
+      color: #ffdff5;
+    }
+    h1, h2 {
+      color: #d63384;
+      transition: color 0.8s;
+    }
+    body.night h1, body.night h2 {
+      color: #ffdff5;
+    }
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-weight: normal;
+      text-align: center;
+      margin-top: 20px;
+    }
+    h2 {
+      text-align: center;
+    }
+    .section {
+      padding: 30px 20px;
+      max-width: 540px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    /* Rotating message box */
+    #rotatingMessageBox {
+      background-color: #fff;
+      border: 2.5px solid #ff91b6;
+      border-radius: 18px;
+      padding: 25px 36px;
+      margin: 0 auto 27px auto;
+      max-width: 370px;
+      min-height: 60px;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #ff4376;
+      user-select: none;
+      position: relative;
+      box-shadow: 0 6px 18px rgba(255, 105, 180, 0.19), 0 1.5px 2.5px rgba(0,0,0,0.05);
+      background-clip: padding-box;
+    }
+    body.night #rotatingMessageBox {
+      background: #241c38;
+      border-color: #6b53b4;
+      color: #ffdff5;
+      box-shadow: 0 6px 18px rgba(107, 83, 180, 0.6);
+    }
+    #rotatingMessageBox > span {
+      position: absolute;
+      width: 100%;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.7s ease-in-out;
+      font-weight: bold;
+    }
+    #rotatingMessageBox > span.visible {
+      opacity: 1;
+    }
+
+    /* Compliment text */
+    #complimentText {
+      opacity: 1;
+      transition: opacity 0.6s ease;
+      font-size: 1.3rem;
+      color: #b3005e;
+      font-weight: 700;
+      min-height: 34px;
+      letter-spacing: 0.02em;
+      text-align: center;
+      user-select: text;
+    }
+    body.night #complimentText {
+      color: #ffe6f7;
+    }
+
+    /* Countdown Cards */
+    .counter-cards {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      margin: 32px auto 0 auto;
+      flex-wrap: wrap;
+      max-width: 90vw;
+    }
+    .counter-card {
+      background: #fff;
+      border: 1.5px solid #ffd6e6;
+      box-shadow: 0 4px 16px rgba(255, 105, 180, 0.1);
+      border-radius: 18px;
+      padding: 24px 36px;
+      min-width: 240px;
+      text-align: center;
+      margin-bottom: 18px;
+      transition: background 0.3s, color 0.3s;
+    }
+    body.night .counter-card {
+      background: #2a2340;
+      border-color: #674efb;
+      color: #ffdff5;
+      box-shadow: 0 4px 24px rgba(107,83,180,0.15);
+    }
+    .counter-card h3 {
+      margin: 0 0 10px 0;
+      font-size: 1rem;
+      color: inherit;
+    }
+    .counter-value {
+      font-size: 1.4rem;
+      font-weight: 700;
+      font-family: monospace, monospace;
+      letter-spacing: 0.07em;
+    }
+
+    /* Slideshow container */
+    .slideshow-container {
+      position: relative;
+      max-width: 345px;
+      margin: 0 auto;
+      background: #fff0f9;
+      border-radius: 14px;
+      box-shadow: 0 4px 16px rgba(216,54,132,0.12);
+      overflow: hidden;
+      user-select: none;
+    }
+    .slide-img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      border-radius: 14px;
+    }
+    .slide-arrow {
+      position: absolute;
+      top: 50%;
+      z-index: 2;
+      background: rgba(255,255,255,0.8);
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      font-size: 2rem;
+      color: #d63384;
+      cursor: pointer;
+      transform: translateY(-50%);
+      transition: background 0.3s ease;
+      user-select: none;
+    }
+    .slide-arrow:hover {
+      background: #ffd6e6;
+    }
+    .slide-arrow.left {
+      left: 10px;
+    }
+    .slide-arrow.right {
+      right: 10px;
+    }
+    body.night .slide-arrow {
+      background: rgba(50, 30, 80, 0.8);
+      color: #ffdff5;
+    }
+    body.night .slide-arrow:hover {
+      background: #6b53b4;
+    }
+
+    /* Love reasons and compliments */
+    .love-reasons-wrapper {
+      margin: 18px auto 20px auto;
+      max-width: 480px;
+      background: #fff0f9;
+      border-radius: 18px;
+      box-shadow: 0 2px 14px rgba(216, 54, 132, 0.1);
+      border: 1.5px solid #ffd6e6;
+      padding: 28px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+    body.night .love-reasons-wrapper {
+      background: #322956;
+      color: #ffdff5;
+      border-color: #5c4b92;
+      box-shadow: 0 2px 20px rgba(107, 83, 180, 0.5);
+    }
+    .love-arrow {
+      background: #fff;
+      color: #ff83ad;
+      border: 1.5px solid #ffd6e6;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      box-shadow: 0 2px 8px rgba(216, 54, 132, 0.15);
+      font-size: 1.8rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .love-arrow:hover {
+      background: #ffe0ec;
+      transform: scale(1.1);
+    }
+    .love-reason {
+      flex: 1;
+      font-size: 1.3rem;
+      font-weight: 600;
+      text-align: center;
+      min-height: 60px;
+      opacity: 1;
+      transition: opacity 0.4s ease;
+      letter-spacing: 0.02em;
+    }
+    /* Compliment container */
+    .compliment-container {
+      margin-top: 28px;
+      max-width: 480px;
+      background: #ffecf3;
+      border-radius: 22px;
+      padding: 24px 32px;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 6px 20px rgba(255, 105, 180, 0.12);
+      font-weight: 600;
+    }
+    body.night .compliment-container {
+      background: #3b2e56;
+      box-shadow: 0 6px 20px rgba(107, 83, 180, 0.4);
+      color: #ffdff5;
+    }
+    .compliment-btn {
+      width: 100%;
+      background: linear-gradient(90deg, #ff8aa2, #ff70a4);
+      color: #fff;
+      padding: 14px 0;
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      font-size: 1.08rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      box-shadow: 0 4px 14px rgba(255, 99, 145, 0.6);
+      transition: background 0.3s ease;
+      user-select: none;
+    }
+    .compliment-btn:hover {
+      background: linear-gradient(90deg, #ff70a4, #ff5c91);
+    }
+
+    /* Love Letter */
+    .letter-box {
+      background-color: #fff0f6;
+      padding: 20px;
+      margin: 0 auto;
+      border-radius: 15px;
+      max-width: 700px;
+      box-shadow: 0 4px 12px rgba(255, 105, 180, 0.3);
+      font-size: 1.1rem;
+      color: #804061;
+      text-align: justify;
+      line-height: 1.5;
+      user-select: text;
+    }
+    body.night .letter-box {
+      background: #3d2e56;
+      color: #ffdff5;
+      box-shadow: 0 4px 12px rgba(107, 83, 180, 0.6);
+    }
+
+    /* Proposal Section */
+    #proposalSection {
+      margin-top: 40px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+      position: relative;
+      height: 210px;
+    }
+    #proposalSection h2 {
+      font-family:'Great Vibes', cursive;
+      font-size: 2rem;
+      margin-bottom: 14px;
+      color: #d63384;
+      transition: color 0.8s;
+    }
+    body.night #proposalSection h2 {
+      color: #ffdff5;
+    }
+    #yesBtn, #noBtn {
+      padding: 12px 28px;
+      font-weight: 600;
+      border: none;
+      border-radius: 18px;
+      color: white;
+      cursor: pointer;
+      user-select:none;
+      position: absolute;
+      top: 65%;
+      transform: translateY(-50%);
+      transition: all 0.25s ease;
+      outline: none;
+    }
+    #yesBtn {
+      background: #ff6f91;
+      left: 20%;
+    }
+    #yesBtn:hover {
+      background-color: #ff4376;
+      transform: translateY(-50%) scale(1.08);
+    }
+    #noBtn {
+      background: #bbb;
+      color: #666;
+      left: 60%;
+    }
+    #noBtn:hover {
+      background-color: #999;
+    }
+    #proposalMessage {
+      margin-top: 140px;
+      font-size: 1.3rem;
+      color: #b3005e;
+      font-weight: 700;
+      min-height: 50px;
+      user-select: text;
+    }
+    body.night #proposalMessage {
+      color: #ffe6f7;
+    }
+
+    /* Music Card */
+    .music-card {
+      margin: 20px auto;
+      max-width: 350px;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      user-select:none;
+    }
+    body.night .music-card {
+      background: #3d2e56;
+      box-shadow: 0 8px 20px rgba(107, 83, 180, 0.6);
+    }
+    .music-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .music-info {
+      padding: 15px;
+      color: #333;
+    }
+    body.night .music-info {
+      color: #ffdff5;
+    }
+    .music-info h3 {
+      margin: 0;
+    }
+    .music-info p {
+      margin: 5px 0 0;
+    }
+
+    /* Timeline */
+    .timeline {
+      text-align: left;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .timeline-item {
+      background-color: #fff;
+      margin: 10px 0;
+      padding: 15px 20px;
+      border-left: 5px solid #d63384;
+      border-radius: 5px;
+      font-size: 1rem;
+      color: #6f2a4d;
+      user-select: text;
+      transition: background-color 0.8s, color 0.8s;
+    }
+    body.night .timeline-item {
+      background-color: #3c2e59;
+      border-color: #8064e8;
+      color: #ffe6f7;
+      box-shadow: 0 2px 8px rgba(107,83,180,0.5);
+    }
+    .timeline-item strong {
+      color: #d63384;
+    }
+    body.night .timeline-item strong {
+      color: #a7acf7;
+    }
+
+    /* Floating hearts animation */
+    .heart {
+      position: fixed;
+      font-size: 2rem;
+      color: #ff6f91;
+      z-index: 9999;
+      pointer-events: none;
+      user-select: none;
+      will-change: transform, opacity;
+      animation: flyHeart 2s linear forwards;
+      filter: drop-shadow(0 0 3px #ff6f91);
+    }
+    @keyframes flyHeart {
+      0% {
+        opacity: 1;
+        transform: translateY(0) scale(1) rotate(0deg);
+      }
+      35% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-280px) scale(1.4) rotate(24deg);
+      }
+    }
+
+    /* Day/Night toggle button */
+    #toggleNight {
+      position: fixed;
+      right: 18px;
+      top: 18px;
+      z-index: 11;
+      background: #fff;
+      border-radius: 40px;
+      border: none;
+      box-shadow: 0 2px 10px #ffc3eb;
+      color: #d63384;
+      font-size: 1.25rem;
+      font-weight: 700;
+      padding: 9px 18px;
+      cursor: pointer;
+      transition: background 0.4s, color 0.4s;
+      outline: none;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      user-select: none;
+    }
+    #toggleNight.night {
+      background: #231e36;
+      color: #ffdff5;
+      box-shadow: 0 2px 12px #453a63;
+    }
+    /* Stars for night */
+    #starwrap {
+      pointer-events: none;
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      top: 0;
+      left: 0;
+      z-index: 9;
+    }
+    .star {
+      position: fixed;
+      border-radius: 50%;
+      background: #fffbe9;
+      filter: blur(1.2px);
+      opacity: 0.8;
+      pointer-events: none;
+      z-index: 9;
+      animation: starTwinkle 3s ease-in-out infinite;
+    }
+    @keyframes starTwinkle {
+      50% { opacity: 0.4; }
+    }
+
+    /* Quiz modal */
+    #quizModal {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      display: none;
+      align-items: flex-start; /* changed for scroll */
+      justify-content: center;
+      padding-top: 80px; /* spacing from top */
+      background: rgba(50, 30, 80, 0.19);
+      z-index: 11112;
+      user-select: none;
+      overflow-y: auto; /* allow vertical scrolling */
+      box-sizing: border-box;
+    }
+    #quizModal.show {
+      display: flex;
+    }
+    #quizModal .modal-box {
+      background: #fff;
+      border-radius: 18px;
+      padding: 34px 22px;
+      max-width: 350px;
+      max-height: 80vh; /* limit max height */
+      overflow-y: auto;
+      box-shadow: 0 4px 24px #b67fca44;
+      font-size: 1.08rem;
+      color: #d63384;
+      text-align: center;
+      position: relative;
+      box-sizing: border-box;
+    }
+    #quizModal input[type='radio'] {
+      margin: 12px 8px 12px 0;
+      cursor: pointer;
+    }
+    #quizModal button {
+      margin-top: 20px;
+      padding: 10px 24px;
+      background: #ff6f91;
+      color: #fff;
+      border: none;
+      border-radius: 9px;
+      font-weight: 700;
+      cursor: pointer;
+      user-select: none;
+    }
+    #quizModal button:disabled {
+      background-color: #dca;
+      cursor: not-allowed;
+    }
+    #quizModal .closeQuiz {
+      position: absolute;
+      top: 14px; right: 18px;
+      background: transparent;
+      border: none;
+      color: #d63384;
+      font-size: 1.3rem;
+      cursor: pointer;
+      user-select: none;
+    }
+    #quizResult {
+      margin-top: 16px;
+      font-weight: bold;
+      color: #8d34b7;
+      min-height: 40px;
+      box-sizing: border-box;
+      padding-bottom: 10px;
+    }
+    
+    .zoom-container {
+      display: inline-block;
+      cursor: zoom-in;
+      transition: transform 0.3s ease;
+      border-radius: 14px;
+    }
+
+    .zoom-container.zoomed {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(1.7);
+      background: rgba(0, 0, 0, 0.8);
+      padding: 10px;
+      z-index: 1000;
+      cursor: zoom-out;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Day/Night toggle -->
+  <button id="toggleNight" title="Switch Day/Night" aria-label="Toggle Day and Night mode">
+    <span id="dayIcon">🌞</span><span id="nightIcon" style="display:none;">🌙</span> Day/Night
+  </button>
+  <div id="starwrap" aria-hidden="true"></div>
+
+  <!-- Header message -->
+  <div class="section">
+    <h1>Happy Girlfriend Day, My Love 💖</h1>
+    <div id="rotatingMessageBox" aria-live="polite" aria-atomic="true" role="region">
+      <span id="msg1" class="visible"></span>
+      <span id="msg2"></span>
+    </div>
+  </div>
+
+  <!-- Love Letter -->
+  <div class="section">
+    <h2>Love Letter 💌</h2>
+    <button id="toggleLetterBtn" aria-expanded="false" aria-controls="loveLetter" style="padding:10px 20px; border:none; background:#d63384; color:#fff; border-radius:8px; cursor:pointer; font-weight:bold;">
+      Click to Reveal 💌
+    </button>
+    <div class="letter-box" id="loveLetter" style="display:none;" aria-hidden="true" tabindex="0">
+      From the moment we met, everything changed. You brought light to my darkest days, and peace to my chaos. I cherish every moment with you. I promise to be by your side, in all ups and downs, always. You're the best thing that's ever happened to me. I love you endlessly, Saku. 💖
+    </div>
+  </div>
+
+  <!-- Music section -->
+  <div class="section">
+    <h2>🎶 A song for you</h2>
+    <div class="music-card">
+      <img src="https://i1.sndcdn.com/artworks-H9NfP9akMgw6b6x6-m5iEGg-t500x500.jpg" alt="Dandelions" />
+      <div class="music-info">
+        <h3>Dandelions</h3>
+        <p>Ruth B.</p>
+        <audio controls autoplay loop>
+          <source src="dandelions.mp3" type="audio/mpeg" />
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+    </div>
+  </div>
+
+  <!-- Memories slideshow -->
+  <div class="section">
+    <h2>🌸 Memories Together</h2>
+    <div class="slideshow-container" id="slideshow" aria-label="Photo slideshow" role="region">
+      <img class="slide-img" id="slideImg" src="https://placehold.co/300x300/ffcad4/333?text=Memory+1" alt="Memory photo 1" />
+      <button class="slide-arrow left" id="slidePrev" title="Previous Photo" aria-label="Previous Photo">‹</button>
+      <button class="slide-arrow right" id="slideNext" title="Next Photo" aria-label="Next Photo">›</button>
+    </div>
+  </div>
+
+  <!-- 💕 You Cutie Slideshow -->
+  <div class="section">
+    <h2>You Cutie 💕</h2>
+    <div class="slideshow-container" aria-label="Cutie slideshow" role="region">
+      <img class="slide-img" id="cutieSlideImg" src="cutie1.jpg" alt="Cutie photo 1" />
+      <button class="slide-arrow left" id="cutieSlidePrev" title="Previous Photo" aria-label="Previous Photo">‹</button>
+      <button class="slide-arrow right" id="cutieSlideNext" title="Next Photo" aria-label="Next Photo">›</button>
+    </div>
+  </div>
+
+
+  <!-- Countdown cards -->
+  <div class="section counter-cards">
+    <div class="counter-card" role="region" aria-label="Together for countdown">
+      <h3>Together For</h3>
+      <div class="counter-value" id="countdown" aria-live="polite" aria-atomic="true"></div>
+    </div>
+    <div class="counter-card" role="region" aria-label="Next anniversary countdown">
+      <h3>Next Anniversary In</h3>
+      <div class="counter-value" id="annivCountdown" aria-live="polite" aria-atomic="true"></div>
+    </div>
+  </div>
+
+  <!-- Reasons Why I Love You and Compliment with Quiz button -->
+  <div class="section">
+    <h2 style="font-family: 'Great Vibes', cursive; font-size: 2rem; margin-bottom: 0; color: #d63384;">Reasons Why I Love You</h2>
+    <div class="love-reasons-wrapper" style="margin-top: 18px;">
+      <button id="prevReason" class="love-arrow" aria-label="Previous Reason">‹</button>
+      <div class="love-reason" id="loveReason" tabindex="0" aria-live="polite" aria-atomic="true"></div>
+      <button id="nextReason" class="love-arrow" aria-label="Next Reason">›</button>
+    </div>
+
+    <div class="compliment-container">
+      <button class="compliment-btn" id="complimentBtn" aria-label="Get a compliment">Get a Compliment!</button>
+      <div id="complimentText" aria-live="polite" aria-atomic="true"></div>
+    </div>
+
+    <!-- Quiz button to open modal -->
+    <div style="margin-top: 20px;">
+      <button class="compliment-btn" style="background: #8760ff;" onclick="openQuiz()" aria-label="Open quiz">
+        Take Our Cute Quiz!
+      </button>
+    </div>
+  </div>
+   
+   <!-- ✍️ Handwritten Letter Section -->
+   <div class="section">
+     <h2>💌 Handwritten Letter</h2>
+     <button class="compliment-btn" onclick="toggleLetterImage()">Reveal Handwritten Letter</button>
+
+     <div id="letterImageBox" style="display: none; margin-top: 20px;">
+       <div class="zoom-container" onclick="toggleZoom(this)">
+         <img
+        id="handLetterImg"
+        src="handwritten-letter.jpg"
+        alt="Handwritten Letter"
+        style="max-width: 100%; border-radius: 14px; box-shadow: 0 4px 16px rgba(0,0,0,0.2);"
+      />
+       </div>
+       <br />
+       <button class="compliment-btn" style="background:#805cf7;" onclick="downloadLetterImage()">📩 Download Letter</button>
+     </div>
+   </div>
+
+   
+   
+  <!-- Proposal Section -->
+  <div class="section" id="proposalSection">
+    <h2>Will you be mine forever?</h2>
+    <button id="yesBtn" aria-label="Say Yes">Yes ❤️</button>
+    <button id="noBtn" aria-label="Say No">No 💔</button>
+    <div id="proposalMessage" role="alert" aria-live="assertive"></div>
+  </div>
+
+  <!-- Important Events -->
+  <div class="section">
+    <h2>📆 Important Events</h2>
+    <div class="timeline" aria-label="Timeline of events">
+      <div class="timeline-item" tabindex="0">
+        <strong>26 February 2025</strong>: The day I proposed to you ❤️
+      </div>
+      <div class="timeline-item" tabindex="0">
+        <strong>14 January 2025</strong>: The day we first met 🌟
+      </div>
+      <div class="timeline-item" tabindex="0">
+        <strong>1 August 2025</strong>: Our first month together 💕
+      </div>
+    </div>
+  </div>
+
+  <!-- Quiz Modal -->
+  <div id="quizModal" role="dialog" aria-modal="true" aria-labelledby="quizTitle" aria-describedby="quizDesc" tabindex="-1">
+    <div class="modal-box">
+      <button class="closeQuiz" aria-label="Close Quiz">&times;</button>
+      <h2 id="quizTitle">How well do you know me?</h2>
+      <p id="quizDesc">Answer these fun questions!</p>
+      <form id="quizForm" novalidate>
+        <fieldset>
+          <legend>1. What do I love?</legend>
+          <label><input type="radio" name="q1" value="game" required /> Game</label><br />
+          <label><input type="radio" name="q1" value="you" /> You</label><br />
+          <label><input type="radio" name="q1" value="tea" /> Tea</label><br />
+          <label><input type="radio" name="q1" value="coffee" /> Coffee</label>
+        </fieldset>
+        <fieldset>
+          <legend>2. How much do I love you?</legend>
+          <label><input type="radio" name="q2" value="10" required /> 10%</label><br />
+          <label><input type="radio" name="q2" value="50" /> 50%</label><br />
+          <label><input type="radio" name="q2" value="90" /> 90%</label><br />
+          <label><input type="radio" name="q2" value="infinite" /> ∞</label>
+        </fieldset>
+        <fieldset>
+          <legend>3. My favourite colour?</legend>
+          <label><input type="radio" name="q3" value="red" required /> Red</label><br />
+          <label><input type="radio" name="q3" value="green" /> Green</label><br />
+          <label><input type="radio" name="q3" value="blue" /> Blue</label><br />
+          <label><input type="radio" name="q3" value="yellow" /> Yellow</label>
+        </fieldset>
+        <button type="submit">Submit</button>
+      </form>
+      <div id="quizResult" aria-live="polite" style="margin-top:10px; font-weight:bold; min-height:36px;"></div>
+    </div>
+  </div>
+
+  <script>
+    // Rotating Messages
+    const messages = [
+      "You are the best thing that ever happened to me 💘",
+      "I fall for you every single day 🌹",
+      "You're my today and all of my tomorrows 💞",
+      "You make my world brighter 💫",
+      "Forever isn't long enough with you 💍"
+    ];
+
+    const msg1 = document.getElementById('msg1');
+    const msg2 = document.getElementById('msg2');
+    let msgIndex = 0;
+    let showingMsg1 = true;
+
+    msg1.textContent = messages[0];
+    msg1.classList.add('visible');
+
+    function rotateMessages() {
+      const nextIndex = (msgIndex + 1) % messages.length;
+      if (showingMsg1) {
+        msg2.textContent = messages[nextIndex];
+        msg2.classList.add('visible');
+        msg1.classList.remove('visible');
+      } else {
+        msg1.textContent = messages[nextIndex];
+        msg1.classList.add('visible');
+        msg2.classList.remove('visible');
+      }
+      msgIndex = nextIndex;
+      showingMsg1 = !showingMsg1;
+    }
+    setInterval(rotateMessages, 3000);
+
+    // Compliments with fade
+    const compliments = [
+      "Your smile brightens every day! 😊",
+      "You make ordinary moments extraordinary. ✨",
+      "I'm grateful for your endless kindness. ❤️",
+      "You always make me feel so loved.",
+      "You are proof that dreams do come true. 💖"
+    ];
+    const complimentTextEl = document.getElementById("complimentText");
+    const complimentBtn = document.getElementById("complimentBtn");
+
+    complimentBtn.addEventListener("click", () => {
+      complimentTextEl.style.opacity = 0;
+      setTimeout(() => {
+        const c = compliments[Math.floor(Math.random() * compliments.length)];
+        complimentTextEl.textContent = c;
+        complimentTextEl.style.opacity = 1;
+      }, 300);
+    });
+
+    // Love Reasons Slider
+    const reasons = [
+      "You listen to me like no one else ever has 💗",
+      "Your laughter makes even the dullest day beautiful 🌻",
+      "You’re my biggest supporter and best friend 🤝",
+      "Every moment with you feels like magic ✨",
+      "You inspire me to be a better person every day 🌱",
+      "Your hugs are my favorite place to be 🤗",
+      "We share a language only our hearts understand 💬"
+    ];
+    let reasonIndex = 0;
+    const loveReasonElement = document.getElementById('loveReason');
+
+    function updateReason() {
+      loveReasonElement.style.opacity = 0;
+      setTimeout(() => {
+        loveReasonElement.textContent = reasons[reasonIndex];
+        loveReasonElement.style.opacity = 1;
+      }, 340);
+    }
+
+    document.getElementById('prevReason').onclick = () => {
+      reasonIndex = (reasonIndex - 1 + reasons.length) % reasons.length;
+      updateReason();
+    };
+    document.getElementById('nextReason').onclick = () => {
+      reasonIndex = (reasonIndex + 1) % reasons.length;
+      updateReason();
+    };
+    updateReason();
+
+    // Countdown timers
+    const startDate = new Date(2025, 1, 26);
+
+    function updateCountdowns() {
+      const now = new Date();
+
+      // Together for
+      const diffSinceStartMs = now - startDate;
+      let countdownEl = document.getElementById("countdown");
+      if(diffSinceStartMs >= 0) {
+        let totalSec = Math.floor(diffSinceStartMs / 1000);
+        let days = Math.floor(totalSec / (24*3600));
+        totalSec %= (24*3600);
+        let hrs = Math.floor(totalSec / 3600);
+        totalSec %= 3600;
+        let mins = Math.floor(totalSec / 60);
+        let secs = totalSec % 60;
+        countdownEl.textContent = `Together for: ${days} day${days!==1?'s':''}, `
+          + `${hrs.toString().padStart(2,'0')}:${mins.toString().padStart(2,'0')}:`
+          + `${secs.toString().padStart(2,'0')} 💑`;
+      } else {
+        countdownEl.textContent = `Counting starts soon... 💑`;
+      }
+
+      // Anniversary countdown
+      const annivMonth = 1;
+      const annivDay = 26;
+      let annivYear = now.getFullYear();
+      let annivDateObj = new Date(annivYear, annivMonth, annivDay);
+      if(now > annivDateObj) {
+        annivYear++;
+        annivDateObj = new Date(annivYear, annivMonth, annivDay);
+      }
+      let annivDiffMs = annivDateObj - now;
+      let annivCountdownEl = document.getElementById("annivCountdown");
+      if(annivDiffMs >= 0) {
+        let totalSec = Math.floor(annivDiffMs / 1000);
+        let days = Math.floor(totalSec / (24*3600));
+        totalSec %= (24*3600);
+        let hrs = Math.floor(totalSec / 3600);
+        totalSec %= 3600;
+        let mins = Math.floor(totalSec / 60);
+        let secs = totalSec % 60;
+        annivCountdownEl.textContent = `Next Anniversary in: ${days} day${days!==1?'s':''}, `
+         + `${hrs.toString().padStart(2,'0')}:${mins.toString().padStart(2,'0')}:`
+         + `${secs.toString().padStart(2,'0')}`;
+      } else {
+        annivCountdownEl.textContent = "Happy Anniversary! 🎉❤️";
+      }
+    }
+    updateCountdowns();
+    setInterval(updateCountdowns, 1000);
+
+    // Love Letter toggle
+    const toggleLetterBtn = document.getElementById('toggleLetterBtn');
+    const loveLetter = document.getElementById('loveLetter');
+    toggleLetterBtn.addEventListener('click', () => {
+      const isHidden = loveLetter.style.display === "none" || loveLetter.style.display === "";
+      loveLetter.style.display = isHidden ? "block" : "none";
+      toggleLetterBtn.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+      loveLetter.setAttribute('aria-hidden', !isHidden);
+    });
+
+    // Slideshow
+    const slideshowImages = [
+      { src:"https://placehold.co/300x300/ffcad4/333?text=Memory+1", alt:"Memory photo 1" },
+      { src:"https://placehold.co/300x300/ffc8dd/333?text=Memory+2", alt:"Memory photo 2" },
+      { src:"https://placehold.co/300x300/ffb3c1/333?text=Memory+3", alt:"Memory photo 3" },
+      { src:"https://placehold.co/300x300/ff9bbd/333?text=Memory+4", alt:"Memory photo 4" }
+    ];
+    let slideIndex = 0;
+    const slideImg = document.getElementById("slideImg");
+    const slidePrev = document.getElementById("slidePrev");
+    const slideNext = document.getElementById("slideNext");
+
+    function showSlide(i) {
+      slideIndex = (i + slideshowImages.length) % slideshowImages.length;
+      slideImg.src = slideshowImages[slideIndex].src;
+      slideImg.alt = slideshowImages[slideIndex].alt;
+    }
+    slidePrev.onclick = () => showSlide(slideIndex - 1);
+    slideNext.onclick = () => showSlide(slideIndex + 1);
+    showSlide(slideIndex);
+
+    const cutieImages = [
+      { src: "cutie1.jpg", alt: "Cutie 1" },
+      { src: "cutie2.jpg", alt: "Cutie 2" },
+      { src: "cutie3.jpg", alt: "Cutie 3" }
+];
+
+    let cutieIndex = 0;
+    const cutieImgElement = document.getElementById("cutieSlideImg");
+
+    function showCutieSlide(i) {
+  cutieIndex = (i + cutieImages.length) % cutieImages.length;
+  cutieImgElement.src = cutieImages[cutieIndex].src;
+  cutieImgElement.alt = cutieImages[cutieIndex].alt;
+}
+
+// Attach button handlers
+document.getElementById("cutieSlideNext").onclick = () => showCutieSlide(cutieIndex + 1);
+document.getElementById("cutieSlidePrev").onclick = () => showCutieSlide(cutieIndex - 1);
+
+// Show first slide on load
+showCutieSlide(0);
+
+    // Proposal buttons behavior with floating hearts
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+    const proposalMessage = document.getElementById("proposalMessage");
+    const proposalSection = document.getElementById("proposalSection");
+    let yesClickCount = 0;
+    const maxYesClicks = 10;
+
+    function getRandomPosition(el) {
+      const parent = proposalSection;
+      const maxX = parent.clientWidth - el.offsetWidth;
+      const maxY = parent.clientHeight - el.offsetHeight - 20;
+      const randomX = Math.random() * maxX;
+      const randomY = Math.random() * maxY;
+      return { x: randomX, y: randomY };
+    }
+
+    function createHeart(x, y) {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = x + 'px';
+      heart.style.top = y + 'px';
+      heart.textContent = '❤️';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 2000);
+    }
+
+    yesBtn.addEventListener("click", (e) => {
+      yesClickCount++;
+      createHeart(e.clientX, e.clientY);
+      if (yesClickCount < maxYesClicks) {
+        const pos = getRandomPosition(yesBtn);
+        yesBtn.style.left = `${pos.x}px`;
+        yesBtn.style.top = `${pos.y}px`;
+      } else {
+        proposalMessage.textContent = "You made me the happiest! Forever and always ❤️💍";
+        yesBtn.style.display = "none";
+        noBtn.style.display = "none";
+      }
+    });
+    noBtn.addEventListener("click", () => {
+      proposalMessage.textContent = "You gave up too quickly... 🥺 Please think it over!";
+      yesBtn.style.display = "none";
+      noBtn.style.display = "none";
+    });
+
+    
+    // ✍️ Handwritten Letter functionality
+    function toggleLetterImage() {
+  document.getElementById("letterImageBox").style.display = "block";
+}
+
+    function toggleZoom(container) {
+  container.classList.toggle("zoomed");
+}
+
+    function downloadLetterImage() {
+      const img = document.getElementById("handLetterImg");
+      const link = document.createElement("a");
+  link.href = img.src;
+  link.download = "handwritten_letter.jpg";
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+
+    
+    // Day/Night toggle + stars
+    const toggleNight = document.getElementById('toggleNight');
+    const dayIcon = document.getElementById('dayIcon');
+    const nightIcon = document.getElementById('nightIcon');
+    const starwrap = document.getElementById('starwrap');
+
+    toggleNight.addEventListener('click', () => {
+      const isNight = document.body.classList.toggle('night');
+      dayIcon.style.display = isNight ? 'none' : 'inline';
+      nightIcon.style.display = isNight ? 'inline' : 'none';
+
+      if(isNight) {
+        createStars(50);
+      } else {
+        while(starwrap.firstChild) starwrap.removeChild(starwrap.firstChild);
+      }
+    });
+
+    function createStars(num) {
+      for(let i=0; i<num; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        star.style.width = (Math.random() * 2 + 1) + 'px';
+        star.style.height = star.style.width;
+        star.style.top = (Math.random() * 100) + 'vh';
+        star.style.left = (Math.random() * 100) + 'vw';
+        star.style.animationDuration = (Math.random()*3+2) + 's';
+        star.style.animationDelay = (Math.random()*3) + 's';
+        starwrap.appendChild(star);
+      }
+    }
+
+    // Quiz modal logic
+    const quizModal = document.getElementById('quizModal');
+    const quizForm = document.getElementById('quizForm');
+    const quizResult = document.getElementById('quizResult');
+    const closeQuizBtn = quizModal.querySelector('.closeQuiz');
+
+    function openQuiz() {
+      quizModal.classList.add('show');
+      quizResult.textContent = "";
+      quizForm.reset();
+      setTimeout(() => quizModal.querySelector('input[type="radio"]').focus(), 250);
+    }
+    function closeQuiz() {
+      quizModal.classList.remove('show');
+    }
+    closeQuizBtn.addEventListener('click', closeQuiz);
+    quizModal.addEventListener('click', e => {
+      if(e.target === quizModal) closeQuiz();
+    });
+
+    quizForm.addEventListener('submit', e => {
+      e.preventDefault();
+
+      // Correct answers according to your quiz requirement
+      const correctAnswers = {
+        q1: 'you',
+        q2: 'infinite',
+        q3: 'red'
+      };
+
+      let score = 0;
+      let total = Object.keys(correctAnswers).length;
+
+      for (let q in correctAnswers) {
+        const selected = quizForm[q].value;
+        if (selected === correctAnswers[q]) score++;
+      }
+
+      quizResult.textContent = `Your score: ${score} out of ${total}. ${score === total ? 'You really know me! ❤️' : 'Keep learning! 😊'}`;
+    });
+  </script>
+</body>
+</html>
